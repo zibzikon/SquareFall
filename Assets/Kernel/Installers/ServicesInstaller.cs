@@ -10,6 +10,7 @@ namespace Kernel.Installers
             Container.Bind<IInput>().To<UnityInput>().AsSingle();
             Container.Bind<ITime>().To<UnityTime>().AsSingle();
             Container.Bind<IResourcesLoader>().To<UnityResourceLoader>().AsSingle();
+            Container.Bind<IAudioPlayer>().To<AudioPlayer>().AsSingle();
             Container.Bind<ISceneLoader>().To<UnitySceneLoader>().AsSingle();
             Container.Bind<IUnityViewService>().To<UnityViewService>().AsSingle();
         }

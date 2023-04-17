@@ -10,6 +10,7 @@ namespace Kernel.Systems.Registration
             AddInjected<EmitInputSystem>();
             
             AddInjected<InitializePlayerSystem>();
+            AddInjected<InitializeColorSchemeSelectionWindowSystem>();
             
             AddInjected<CreateFallingSquaresSpawnerOnPlayingStarted>();
             AddInjected<SpawnFallingSquareOnSpawnDurationUpSystem>();
@@ -30,7 +31,12 @@ namespace Kernel.Systems.Registration
             
             AddInjected<UpdateScoreLabelOnPlayerScoreChangedSystem>();
             
+            AddInjected<PlayDirectionChangedSoundOnMovingCircleChangedDirection>();
+            AddInjected<PlayBorderHitSoundOnMovingCircleOutTheBorder>();
+
             AddInjected<GameEventSystems>();
+            
+            AddInjected<MovingCircleCleanupSystem>();
         }
     }
 }

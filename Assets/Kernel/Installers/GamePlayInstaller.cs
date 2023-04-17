@@ -1,8 +1,10 @@
 using Foundation;
 using Kernel.ECSIntegration;
+using Kernel.Gameplay.Color;
 using Kernel.Gameplay.FallingSquaresSpawner;
 using Kernel.Services;
 using Kernel.Systems.Registration;
+using Kernel.UI;
 using Sirenix.OdinInspector;
 using UnityEngine;
 using Zenject;
@@ -33,8 +35,11 @@ namespace Kernel.Installers
             Container.Bind<IEntityViewFactory>().To<EntityViewFactory>().AsSingle();
             Container.Bind<IEntityIdentifierGenerator>().To<EntityIdentifierGenerator>().AsSingle();
             Container.Bind<IGameEntityCreator>().To<GameEntityCreator>().AsSingle();
+            
+            Container.Bind<IColorSchemesProvider>().To<ColorSchemesProvider>().AsSingle();
 
             Container.Bind<IFallingSquareViewFactory>().To<FallingSquareViewFactory>().AsSingle();
+            Container.Bind<IColorSchemeSelectionElementViewFactory>().To<ColorSchemeSelectionElementViewFactory>().AsSingle();
         }
     }
 }

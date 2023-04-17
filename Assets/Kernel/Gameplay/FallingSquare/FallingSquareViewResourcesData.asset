@@ -10,6 +10,6 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 107cccd41e424850bc0153da8f12e768, type: 3}
-  m_Name: FallingSquareView
+  m_Name: FallingSquareViewResourcesData
   m_EditorClassIdentifier: 
   <ViewPath>k__BackingField: Prefabs/FallingSquare

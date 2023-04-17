@@ -1,3 +1,4 @@
+using System.Threading;
 using System.Threading.Tasks;
 using Kernel.Extensions;
 using Kernel.Utils.Exceptions;
@@ -16,13 +17,13 @@ namespace Kernel.Services
             return resource;
         }
 
-        public Task<T> LoadAsync<T>(string resourceName) where T : Object
+        public Task<T> LoadAsync<T>(string resourceName, CancellationToken cancellationToken = default) where T : Object
         {
             var request = Resources.LoadAsync<T>(resourceName);
 
             if (request.NotExists()) throw new ResourceNotExistsException(resourceName);
 
-            return request.AsTask<T>();
+            return request.AsTask<T>(cancellationToken);
         }
     }
 }

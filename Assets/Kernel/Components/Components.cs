@@ -19,6 +19,7 @@ namespace Kernel.Components
     
     [Game, Unique] public class GameState : IComponent { }
     [Game] public class Playing : IComponent { }
+    [Game] public class Paused : IComponent { }
     
     [Game] public class ColorSchemeButton : IComponent { } 
     
@@ -33,7 +34,7 @@ namespace Kernel.Components
     [Game] public class Killed : IComponent { }
     [Game] public class Destructed : IComponent { }
     [Game] public class DependsOnColorScheme : IComponent { }
-    
+ 
     [Game] public class InvertMoveDirection : IComponent { }
     [Game] public class SpawnRandom : IComponent { }
     [Game] public class DurationUp : IComponent { } 
@@ -57,6 +58,8 @@ namespace Kernel.Components
     [Input, Unique] public class Mouse : IComponent { }
     [Input] public class LeftMouse : IComponent { }
     
+    public class BorderOut : IComponent { }
+    public class ChangedMoveDirection : IComponent { }
     [Game, Event(Self)] public class ColorComponent : IComponent { public Color Value; } 
     [Game, Event(Self)] public class Position : IComponent { public Vector3 Value; }
     [Game, Event(Self)] public class Rotation : IComponent { public Vector3 Value; }

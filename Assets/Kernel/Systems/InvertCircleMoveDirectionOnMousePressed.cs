@@ -5,11 +5,11 @@ using static InputMatcher;
 
 namespace Kernel.Systems
 {
-    public class InvertCircleMoveDirectionOnMousePressed : ReactiveSystem<InputEntity>
+    public class InvertCircleMoveDirectionOnMousePressed : PausableReactiveSystem<InputEntity>
     {
         private readonly IGroup<GameEntity> _movables;
 
-        public InvertCircleMoveDirectionOnMousePressed(InputContext input, GameContext game) : base(input) 
+        public InvertCircleMoveDirectionOnMousePressed(InputContext input, GameContext game) : base(game, input) 
             => _movables = game.GetGroup(AllOf(Movable, MovingCircle, MoveDirection));
 
         protected override ICollector<InputEntity> GetTrigger(IContext<InputEntity> input) =>
@@ -17,12 +17,13 @@ namespace Kernel.Systems
 
         protected override bool Filter(InputEntity entity) => entity.isMouse;
 
-        protected override void Execute(List<InputEntity> entities)
+        protected override void OnExecute(List<InputEntity> movingCircles)
         {
             foreach (var movable in _movables)
-            foreach (var _ in entities)
+            foreach (var _ in movingCircles)
             {
                 movable.isInvertMoveDirection = true;
+                movable.isChangedMoveDirection = true;
             }
         }
     }

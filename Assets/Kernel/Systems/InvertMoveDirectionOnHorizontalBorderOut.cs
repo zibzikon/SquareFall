@@ -5,17 +5,17 @@ using static GameMatcher;
 
 namespace Kernel.Systems
 {
-    public class InvertMoveDirectionOnHorizontalBorderOut : IExecuteSystem
+    public class InvertMoveDirectionOnHorizontalBorderOut : PausableExecuteSystem
     {
         private readonly IGroup<GameEntity> _movables;
 
         
-        public InvertMoveDirectionOnHorizontalBorderOut(GameContext game)
+        public InvertMoveDirectionOnHorizontalBorderOut(GameContext game) : base(game)
         {
             _movables = game.GetGroup(AllOf(Movable, Position, MoveDirection, HorizontalBorder));
         }
         
-        public void Execute()
+        protected override void OnExecute()
         {
             foreach (var movable in _movables)
             {
@@ -29,6 +29,7 @@ namespace Kernel.Systems
                     continue;
 
                 movable.isInvertMoveDirection = true;
+                movable.isBorderOut = true;
             }
         }
     }

@@ -6,6 +6,8 @@ namespace Kernel.Gameplay.Color
     [CreateAssetMenu(fileName = "ColorSchemeConfiguration", menuName = "Configurations/ColorScheme")]
     public class ColorSchemeConfiguration : ScriptableObject
     {
+        [field: SerializeField] public string Name { get; private set; }
+        
         [field: SerializeField] public UnityEngine.Color Primary { get; private set; }
         [field: SerializeField] public UnityEngine.Color Secondary { get; private set; }
         [field: SerializeField] public UnityEngine.Color Accent { get; private set; }

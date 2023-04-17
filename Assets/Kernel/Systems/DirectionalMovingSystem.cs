@@ -5,18 +5,18 @@ using static GameMatcher;
 
 namespace Kernel.Systems
 {
-    public class DirectionalMovingSystem : IExecuteSystem
+    public class DirectionalMovingSystem : PausableExecuteSystem
     {
         private readonly ITime _time;
         private readonly IGroup<GameEntity> _movables;
 
-        public DirectionalMovingSystem(GameContext game, ITime time)
+        public DirectionalMovingSystem(GameContext game, ITime time) : base(game)
         {
             _time = time;
             _movables = game.GetGroup(AllOf(Movable, MoveDirection, MovingSpeed, Position));
         }
         
-        public void Execute()
+        protected override void OnExecute()
         {
             foreach (var movable in _movables)
             {

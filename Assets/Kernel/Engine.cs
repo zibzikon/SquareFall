@@ -1,4 +1,5 @@
 using System;
+using Kernel.Gameplay.Color;
 using Kernel.Systems.Registration;
 using Sirenix.OdinInspector;
 using UnityEngine;
@@ -34,10 +35,11 @@ namespace Kernel
             _game.isGameState = true;
         }
         
-        [Button]
-        public void StartPlaying()
-        {
-            _game.gameStateEntity.isPlaying = true;
-        }
+        public void StartPlaying() => _game.gameStateEntity.isPlaying = true;
+        
+        public void PauseGame() => _game.gameStateEntity.isPaused = true;
+        public void ResumeGame() => _game.gameStateEntity.isPaused = false;
+        
+        public void SetColorScheme(ColorSchemeConfiguration colorScheme) => _game.ReplaceCurrentColorScheme(colorScheme);
     }
 }

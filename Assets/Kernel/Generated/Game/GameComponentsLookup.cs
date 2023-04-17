@@ -8,50 +8,56 @@
 //------------------------------------------------------------------------------
 public static class GameComponentsLookup {
 
-    public const int ColorListener = 0;
-    public const int Button = 1;
-    public const int Collectable = 2;
-    public const int CollectableSquareSpawningChance = 3;
-    public const int CollidedEntityId = 4;
-    public const int Collisionable = 5;
-    public const int Color = 6;
-    public const int ColorSchemeButton = 7;
-    public const int ColorType = 8;
-    public const int CurrentColorScheme = 9;
-    public const int DependsOnColorScheme = 10;
-    public const int Destructed = 11;
-    public const int Duration = 12;
-    public const int DurationLeft = 13;
-    public const int DurationUp = 14;
-    public const int FallingSquare = 15;
-    public const int FallingSquaresSpawner = 16;
-    public const int GameState = 17;
-    public const int HorizontalBorder = 18;
-    public const int Id = 19;
-    public const int InvertMoveDirection = 20;
-    public const int Killed = 21;
-    public const int Movable = 22;
-    public const int MoveDirection = 23;
-    public const int MovingCircle = 24;
-    public const int MovingSpeed = 25;
-    public const int Player = 26;
-    public const int Playing = 27;
-    public const int Position = 28;
-    public const int Pressed = 29;
-    public const int Rotation = 30;
-    public const int Score = 31;
-    public const int SpawnedEntitySpeed = 32;
-    public const int SpawnInterval = 33;
-    public const int SpawnPositionRange = 34;
-    public const int SpawnRandom = 35;
-    public const int PositionListener = 36;
-    public const int RotationListener = 37;
+    public const int BorderOutListener = 0;
+    public const int ChangedMoveDirectionListener = 1;
+    public const int ColorListener = 2;
+    public const int BorderOut = 3;
+    public const int ChangedMoveDirection = 4;
+    public const int Collectable = 5;
+    public const int CollectableSquareSpawningChance = 6;
+    public const int CollidedEntityId = 7;
+    public const int Collisionable = 8;
+    public const int Color = 9;
+    public const int ColorSchemeButton = 10;
+    public const int ColorType = 11;
+    public const int CurrentColorScheme = 12;
+    public const int DependsOnColorScheme = 13;
+    public const int Destructed = 14;
+    public const int Duration = 15;
+    public const int DurationLeft = 16;
+    public const int DurationUp = 17;
+    public const int FallingSquare = 18;
+    public const int FallingSquaresSpawner = 19;
+    public const int GameState = 20;
+    public const int HorizontalBorder = 21;
+    public const int Id = 22;
+    public const int InvertMoveDirection = 23;
+    public const int Killed = 24;
+    public const int Movable = 25;
+    public const int MoveDirection = 26;
+    public const int MovingCircle = 27;
+    public const int MovingSpeed = 28;
+    public const int Paused = 29;
+    public const int Player = 30;
+    public const int Playing = 31;
+    public const int Position = 32;
+    public const int Rotation = 33;
+    public const int Score = 34;
+    public const int SpawnedEntitySpeed = 35;
+    public const int SpawnInterval = 36;
+    public const int SpawnPositionRange = 37;
+    public const int SpawnRandom = 38;
+    public const int PositionListener = 39;
+    public const int RotationListener = 40;
 
-    public const int TotalComponents = 38;
+    public const int TotalComponents = 41;
 
     public static readonly string[] componentNames = {
+        "BorderOutListener",
+        "ChangedMoveDirectionListener",
         "ColorListener",
-        "Button",
+        "BorderOut",
+        "ChangedMoveDirection",
         "Collectable",
         "CollectableSquareSpawningChance",
         "CollidedEntityId",
@@ -76,10 +82,10 @@ public static class GameComponentsLookup {
         "MoveDirection",
         "MovingCircle",
         "MovingSpeed",
+        "Paused",
         "Player",
         "Playing",
         "Position",
-        "Pressed",
         "Rotation",
         "Score",
         "SpawnedEntitySpeed",
@@ -91,7 +97,11 @@ public static class GameComponentsLookup {
     };
 
     public static readonly System.Type[] componentTypes = {
+        typeof(BorderOutListenerComponent),
+        typeof(ChangedMoveDirectionListenerComponent),
         typeof(ColorListenerComponent),
+        typeof(Kernel.Components.BorderOut),
+        typeof(Kernel.Components.ChangedMoveDirection),
         typeof(Kernel.Components.Collectable),
         typeof(Kernel.Components.CollectableSquareSpawningChance),
         typeof(Kernel.Components.CollidedEntityId),
@@ -116,6 +126,7 @@ public static class GameComponentsLookup {
         typeof(Kernel.Components.MoveDirection),
         typeof(Kernel.Components.MovingCircle),
         typeof(Kernel.Components.MovingSpeed),
+        typeof(Kernel.Components.Paused),
         typeof(Kernel.Components.Player),
         typeof(Kernel.Components.Playing),
         typeof(Kernel.Components.Position),

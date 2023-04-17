@@ -19,6 +19,10 @@ namespace Kernel.Extensions
         public static bool SatisfiesLayerMask (this GameObject gameObject, LayerMask layerMask) =>    
             ((1 << gameObject.layer) & layerMask) != 0;
 
+        public static void DestroyGameObject(this Component component) => component.gameObject.Destroy();
+        
+        public static void Destroy(this Object obj) => Object.Destroy(obj);
+
         public static IEnumerable<T> GetComponentsInChildrens<T>(this GameObject gameObject) where T : Component
         {
             var components = new List<T>();
