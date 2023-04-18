@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b59d79b852544bceb8a0a2cf1285ea97, type: 3}
   m_Name: FallingSquaresSpawnerConfiguration
   m_EditorClassIdentifier: 
-  <CollectableSquareSpawningChance>k__BackingField: 0.1
+  <CollectableSquareSpawningChance>k__BackingField: 0.3
   <SpawnInterval>k__BackingField: 2
   <InitialSquareSpeed>k__BackingField: 2
   <SpawnPositionsRange>k__BackingField:

@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using Entitas;
+using Kernel.Extensions;
 using Kernel.Gameplay.Color;
 using UnityEngine;
 using static GameMatcher;
@@ -9,12 +10,12 @@ using ColorType = Kernel.Gameplay.Color.ColorType;
 
 namespace Kernel.Systems
 {
-    public class UpdateColorsDependingOnColorSchemeSystem : ReactiveSystem<GameEntity>
+    public class UpdateColorsDependingOnColorSchemeChangedSystem : ReactiveSystem<GameEntity>
     {
         private readonly IGroup<GameEntity> _entitiesDependsOnColorScheme;
 
         
-        public UpdateColorsDependingOnColorSchemeSystem(GameContext game) : base(game)
+        public UpdateColorsDependingOnColorSchemeChangedSystem(GameContext game) : base(game)
         {
             _entitiesDependsOnColorScheme = game.GetGroup(AllOf(DependsOnColorScheme, GameMatcher.ColorType));
         }
@@ -33,19 +34,10 @@ namespace Kernel.Systems
                 var configuration = colorScheme.currentColorScheme.Value;
                 var colorType = dependsOnColorScheme.colorType.Value;
                 
-                var newColor = SelectColorFromConfiguration(configuration, colorType);
+                var newColor = configuration.GetColorByType(colorType);
                 dependsOnColorScheme.ReplaceColor(newColor);
             }
         }
-
-        private Color SelectColorFromConfiguration(ColorSchemeConfiguration configuration, ColorType type)
-            => type switch
-            {
-                Primary => configuration.Primary,
-                Secondary => configuration.Secondary,
-                Accent => configuration.Accent,
-                Neutral => configuration.Neutral,
-                _ => throw new ArgumentOutOfRangeException(nameof(type), type, null)
-            };
+        
     }
 }

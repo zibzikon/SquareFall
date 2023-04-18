@@ -97,6 +97,7 @@ GameObject:
   - component: {fileID: 6006099503545147544}
   - component: {fileID: 6918127389162632462}
   - component: {fileID: 482203117682111025}
+  - component: {fileID: 7552470875760712040}
   m_Layer: 6
   m_Name: FallingSquare
   m_TagString: Untagged
@@ -201,3 +202,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3b9f1ba28e134984a290d6a633e3a7a3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7552470875760712040
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9054601242655928821}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ebf6f3425b314153b4db7f9afb1fd5b1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _renderer: {fileID: 6172966675958357270}

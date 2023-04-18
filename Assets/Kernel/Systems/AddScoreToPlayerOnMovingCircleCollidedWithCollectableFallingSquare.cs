@@ -12,7 +12,7 @@ namespace Kernel.Systems
         public AddScoreToPlayerOnMovingCircleCollidedWithCollectableFallingSquare(GameContext game) : base(game)
         {
             _players = game.GetGroup(AllOf(Player, Score));
-            _fallingCircles = game.GetGroup(AllOf(Id, FallingSquare, Collisionable));
+            _fallingCircles = game.GetGroup(AllOf(Id, FallingSquare, Collisionable, Collectable));
         }
 
         protected override bool Filter(GameEntity collidedEntity) => base.Filter(collidedEntity) && collidedEntity.isMovingCircle;

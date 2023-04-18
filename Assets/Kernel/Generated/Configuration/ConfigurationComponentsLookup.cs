@@ -10,16 +10,19 @@ public static class ConfigurationComponentsLookup {
 
     public const int FallingSquaresSpawnerConfiguration = 0;
     public const int GameConfiguration = 1;
+    public const int PlayingStartingDuration = 2;
 
-    public const int TotalComponents = 2;
+    public const int TotalComponents = 3;
 
     public static readonly string[] componentNames = {
         "FallingSquaresSpawnerConfiguration",
-        "GameConfiguration"
+        "GameConfiguration",
+        "PlayingStartingDuration"
     };
 
     public static readonly System.Type[] componentTypes = {
         typeof(Kernel.Components.FallingSquaresSpawnerConfigurationComponent),
-        typeof(Kernel.Components.GameConfiguration)
+        typeof(Kernel.Components.GameConfiguration),
+        typeof(Kernel.Components.PlayingStartingDuration)
     };
 }

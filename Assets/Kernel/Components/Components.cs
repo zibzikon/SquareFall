@@ -16,11 +16,15 @@ namespace Kernel.Components
     
     [Configuration, Unique] public class GameConfiguration : IComponent {} 
     [Configuration] public class FallingSquaresSpawnerConfigurationComponent : IComponent { public FallingSquaresSpawnerConfiguration Value; } 
+    [Configuration] public class PlayingStartingDuration : IComponent { public float Value; } 
     
+    [Game, Unique] public class CurrentColorScheme : IComponent { public ColorSchemeConfiguration Value; } 
     [Game, Unique] public class GameState : IComponent { }
     [Game] public class Playing : IComponent { }
+    [Game] public class Over : IComponent { }
     [Game] public class Paused : IComponent { }
-    
+    [Game, Event(Self)] public class PreparingToPlay : IComponent { }
+
     [Game] public class ColorSchemeButton : IComponent { } 
     
     [Game] public class FallingSquaresSpawner : IComponent { } 
@@ -34,18 +38,20 @@ namespace Kernel.Components
     [Game] public class Killed : IComponent { }
     [Game] public class Destructed : IComponent { }
     [Game] public class DependsOnColorScheme : IComponent { }
- 
+    [Game] public class BorderOut : IComponent { }
+    [Game] public class ChangedMoveDirection : IComponent { }
+    
     [Game] public class InvertMoveDirection : IComponent { }
     [Game] public class SpawnRandom : IComponent { }
     [Game] public class DurationUp : IComponent { } 
 
-    [Game, Unique] public class CurrentColorScheme : IComponent { public ColorSchemeConfiguration Value; } 
     
     [Game] public class Score : IComponent { public int Value; } 
     
     [Game] public class ColorTypeComponent : IComponent { public ColorType Value; } 
     [Game] public class Duration : IComponent { public float Value; } 
     [Game] public class DurationLeft : IComponent { public float Value; } 
+    [Game] public class PreparingToPlayDuration : IComponent { public float Value; } 
     [Game] public class SpawnedEntitySpeed : IComponent { public float Value; } 
     [Game] public class MovingSpeed : IComponent { public float Value; } 
     [Game] public class CollectableSquareSpawningChance : IComponent { public float Value; } 
@@ -53,14 +59,12 @@ namespace Kernel.Components
     [Game] public class CollidedEntityId : IComponent { public int Value; } 
     [Game] public class MoveDirection : IComponent { public Vector2 Value; } 
     [Game] public class HorizontalBorder : IComponent { public RangeFloat Value; } 
-    [Game] public class SpawnPositionRange : IComponent { public Vector2Range Value; } 
+    [Game] public class SpawnPositionRange : IComponent { public Vector2Range Value; }
     
-    [Input, Unique] public class Mouse : IComponent { }
-    [Input] public class LeftMouse : IComponent { }
-    
-    public class BorderOut : IComponent { }
-    public class ChangedMoveDirection : IComponent { }
-    [Game, Event(Self)] public class ColorComponent : IComponent { public Color Value; } 
+    [Game, Event(Self)] public class ColorComponent : IComponent { public Color Value; }
     [Game, Event(Self)] public class Position : IComponent { public Vector3 Value; }
     [Game, Event(Self)] public class Rotation : IComponent { public Vector3 Value; }
+
+    [Input, Unique] public class Mouse : IComponent { }
+    [Input] public class LeftMouse : IComponent { }
 }

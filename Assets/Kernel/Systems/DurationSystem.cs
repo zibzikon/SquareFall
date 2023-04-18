@@ -4,19 +4,19 @@ using static GameMatcher;
 
 namespace Kernel.Systems
 {
-    public class DurationSystem : IExecuteSystem
+    public class DurationSystem : PausableExecuteSystem
     {
         private readonly ITime _time;
         private readonly IGroup<GameEntity> _withDuration;
 
         
-        public DurationSystem(GameContext game, ITime time)
+        public DurationSystem(GameContext game, ITime time) : base(game)
         {
             _time = time;
             _withDuration = game.GetGroup(AllOf(Duration, DurationLeft).NoneOf(DurationUp));
-        }        
-        
-        public void Execute()
+        }
+
+        protected override void OnExecute()
         {
             foreach (var withDuration in _withDuration.GetEntities())
             {

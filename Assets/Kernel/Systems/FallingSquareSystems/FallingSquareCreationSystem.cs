@@ -1,10 +1,12 @@
 using System.Collections.Generic;
 using Entitas;
 using Kernel.ECSIntegration;
+using Kernel.Extensions;
 using Kernel.Gameplay.FallingSquaresSpawner;
 using Kernel.Utils;
 using UnityEngine;
 using static GameMatcher;
+using ColorType = Kernel.Gameplay.Color.ColorType;
 using Random = Unity.Mathematics.Random;
 
 namespace Kernel.Systems
@@ -26,7 +28,7 @@ namespace Kernel.Systems
             game.CreateCollector(SpawnRandom);
 
         protected override bool Filter(GameEntity spawner) =>
-            AllOf(FallingSquaresSpawner, SpawnPositionRange, SpawnedEntitySpeed).Matches(spawner);
+            AllOf(FallingSquaresSpawner, SpawnPositionRange, CollectableSquareSpawningChance, SpawnedEntitySpeed).Matches(spawner);
 
         protected override void Execute(List<GameEntity> spawnersRequestsSpawn)
         {
@@ -35,6 +37,7 @@ namespace Kernel.Systems
             {
                 var movingCirclePosition = (Vector2) movingCircle.position.Value;
                 var positionRange = spawner.spawnPositionRange.Value;
+                var collectableSpawningChance = spawner.collectableSquareSpawningChance.Value;
                 var position = CalculateRandomPosition(positionRange);
                 var speed = spawner.spawnedEntitySpeed.Value;
                 var direction = (movingCirclePosition - position).normalized;
@@ -48,10 +51,28 @@ namespace Kernel.Systems
                 fallingSquare.AddMovingSpeed(speed);
                 fallingSquare.AddMoveDirection(direction);
 
+                SetCorrectType(collectableSpawningChance, fallingSquare);
+                
                 _viewFactory.CreateView().Initialize(fallingSquare);
+                
                 
                 spawner.isSpawnRandom = false;
             }
+        }
+
+        private void SetCorrectType(float collectableSpawningChance, GameEntity fallingSquare)
+        {
+            if (EvaluateFallingSquareIsCollectable(collectableSpawningChance))
+            {
+                fallingSquare.isCollectable = true;
+                fallingSquare.ReplaceColorType(ColorType.Secondary);
+            }
+            else
+            {
+                fallingSquare.ReplaceColorType(ColorType.Primary);
+            }
+
+            fallingSquare.isDependsOnColorScheme = true;
         }
 
         private Vector2 CalculateRandomPosition(Vector2Range positionRange)
@@ -61,6 +82,10 @@ namespace Kernel.Systems
 
             return Vector2.Lerp(positionRange.start, positionRange.end, t);
         }
+
+        private bool EvaluateFallingSquareIsCollectable(float chance)
+            => UnityEngine.Random.Range(0, (1 / chance).RoundToInt()) == 0;
+        
         
     }
 }

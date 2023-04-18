@@ -1,9 +1,11 @@
+using Kernel.Utils.Attributes;
 using UnityEngine;
 using Zenject;
 
 namespace Kernel.ECSIntegration
 {
     [RequireComponent(typeof(EntityView))]
+    [ImplicitInjectable]
     public class SelfInitializedView : MonoBehaviour
     {
         private IGameEntityCreator _gameEntityCreator;

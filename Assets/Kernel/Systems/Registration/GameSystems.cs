@@ -27,7 +27,8 @@ namespace Kernel.Systems.Registration
             
             AddInjected<DurationSystem>();
             
-            AddInjected<UpdateColorsDependingOnColorSchemeSystem>();
+            AddInjected<UpdateColorsDependingOnColorSchemeChangedSystem>();
+            AddInjected<UpdateInstantiatedEntitiesColorDependsOnColorSchemeSystem>();
             
             AddInjected<UpdateScoreLabelOnPlayerScoreChangedSystem>();
             

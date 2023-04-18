@@ -9,10 +9,9 @@
 public sealed class GameEventSystems : Feature {
 
     public GameEventSystems(Contexts contexts) {
-        Add(new BorderOutEventSystem(contexts)); // priority: 0
-        Add(new ChangedMoveDirectionEventSystem(contexts)); // priority: 0
         Add(new ColorEventSystem(contexts)); // priority: 0
         Add(new PositionEventSystem(contexts)); // priority: 0
+        Add(new PreparingToPlayEventSystem(contexts)); // priority: 0
         Add(new RotationEventSystem(contexts)); // priority: 0
     }
 }
